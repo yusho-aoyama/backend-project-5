@@ -3,9 +3,9 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    email_confirmed_at NULL,
+    email_confirmed_at DATETIME NULL,
     created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL, 
+    updated_at DATETIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS posts (
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS posts (
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     userID INT NOT NULL,
-    FORIEGN KEY (userID) REFERENCES users(id)
+    FOREIGN KEY (userID) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS comments (
@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS comments (
     updated_at DATETIME NOT NULL,
     userID INT NOT NULL,
     postID INT NOT NULL,
-    FORIEGN KEY (userID) REFERENCES users(id),
-    FORIEGN KEY (postID) REFERENCES posts(id)
+    FOREIGN KEY (userID) REFERENCES users(id),
+    FOREIGN KEY (postID) REFERENCES posts(postID)
 );
 
 

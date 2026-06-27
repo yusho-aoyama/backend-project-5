@@ -39,8 +39,10 @@ $result = $mysqli->query("
 |--------------------------------------------------------------------------
 */
 
-$result = mysqli->query(
-    file_get_contents(__DIR__ . 'Examples/blogbook-setup.sql')
+// Since there are multiple sql query in the blogbook-setup.sql, 
+// it is better to use 'multi_query' instead of 'query'.
+$result = $mysqli->multi_query(
+    file_get_contents(__DIR__ . '/Examples/blogbook-setup.sql')
 );
 
 if($result === false) throw new Exception('Could not execute query.');
