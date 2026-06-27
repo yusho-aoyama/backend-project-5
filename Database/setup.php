@@ -6,7 +6,7 @@ $mysqli = new MySQLWrapper();
 
 /*
 |--------------------------------------------------------------------------
-| Create cars table
+| Laod SQL file to create cars table
 |--------------------------------------------------------------------------
 */
 
@@ -32,6 +32,16 @@ $result = $mysqli->query("
         FOREIGN KEY (carID) REFERENCES cars(id) 
     );
 ");
+
+/*
+|--------------------------------------------------------------------------
+| Load SQL file to create tables for blogbook (users, posts, comments, post_likes, comment_likes)
+|--------------------------------------------------------------------------
+*/
+
+$result = mysqli->query(
+    file_get_contents(__DIR__ . 'Examples/blogbook-setup.sql')
+);
 
 if($result === false) throw new Exception('Could not execute query.');
 else print("Successfully ran all SQL setup queries.".PHP_EOL);
