@@ -56,14 +56,21 @@ class BookSearch extends AbstractCommand
 
         // isbnが指定されている場合
         if ($isbn !== false) {
+            // ISBN検索用のキャッシュキーを作る
+            $cacheKey = 'book-search-isbn-' . $isbn;
+
             $this->log("Searching by ISBN: {$isbn}");
+            $this->log("Cache key: {$cacheKey}");
 
             return 0;
         }
 
 
         // ここまで来た場合はtitleが指定されている
+        $cacheKey = 'book-search-title-' . $title;
+
         $this->log("Searching by title: {$title}");
+        $this->log("Cache key: {$cacheKey}");
 
         return 0;
             
