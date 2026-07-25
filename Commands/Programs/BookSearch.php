@@ -4,6 +4,7 @@ namespace Commands\Programs;
 
 use Commands\AbstractCommand;
 use Commands\Argument;
+use Database\MySQLWrapper;
 
 class BookSearch extends AbstractCommand
 {
@@ -75,4 +76,22 @@ class BookSearch extends AbstractCommand
         return 0;
             
         }
+
+        private function findCache(string $cacheKey): ?array
+        {
+            $db = new MySQLWrapper();
+
+            $safeKey = $db->real_escape_string($cacheKey);
+
+            $result = $db->query(
+                "SELECT *
+                FROM cache
+                WHERE `key` = '{$safeKey}'
+                LIMIT 1"
+            );
+
+            $cache = $result->fetch_assoc();
+
+            return $cache ?: null;
+    }
 }

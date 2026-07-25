@@ -4,6 +4,7 @@ namespace Database;
 
 use mysqli;
 use Helpers\Settings;
+use Database\MySQLWrapper;
 
 class MySQLWrapper extends mysqli{
     public function __construct(?string $hostname = 'localhost', ?string $username = null, ?string $password = null, ?string $database = null, ?int $port = null, ?string $socket = null)
